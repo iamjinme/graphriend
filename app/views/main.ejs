@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<title>Graphriend - the social network with graphs!</title>
+		<link href="/public/css/spectre.css" rel="stylesheet" type="text/css">
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+		<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet"/><!-- font awesome -->
+		<!-- jQuery -->
+		<script src="/public/js/jquery.min.js"></script>
+		<!-- Login -->
+		<script src="/public/js/login.js"></script>
+	</head>
+	<body>
+		<div>
+			<!-- Menu -->
+			<header class="navbar">
+				<section class="navbar-section">
+					<a href="/" class="btn btn-link btn-lg"><i class="fa fa-glide"></i></a>
+					<a href="/profile" class="navbar-brand hide-sm">Graphriend</a>
+				</section>
+				<section class="navbar-section">
+					<% if (!user.isLogged) { %>
+						<span class="hide-sm">Welcome, Do I know you?</span>
+						<a id="btn_signup" class="btn btn-primary"></i>Sign Up</a>
+						<a id="btn_login" class="btn btn-link"><i class="fa fa-user"></i> Login</a>
+					<% } else { %>
+						<a href="#/all" class="btn btn-link">All users</a>
+						<a href="#/my" class="btn btn-link">My friends</a>
+						<a href="#/config" class="btn btn-link"><i class="fa fa-cog"></i></a>
+						<span class="hide-sm">Welcome, <%= user.name %>!</span>
+						<a href="/logout" class="btn btn-primary"></i>Logout</a>
+					<% } %>
+				</section>
+			</header>
+			<!-- Login modal -->
+			<div id="login_modal" class="modal modal-sm">
+				<div class="modal-overlay"></div>
+				<div class="modal-container" role="document">
+					<div class="modal-header">
+						<button type="button" class="btn btn-clear float-right" id='clear_login' aria-label="Close"></button>
+						<div id="login_title" class="modal-title">Login title</div>
+					</div>
+					<div id="login_message_container" class="toast-message hide">
+							<button id="clear_login_message" class="btn btn-clear float-right"></button>
+							<span id="login_message">Login message</span>
+					</div>
+					<div class="modal-body">
+						<div class="content">
+							<form id="login_form">
+								<div id="name_input" class="form-group">
+									<label class="form-label" for="name">Name</label>
+									<input class="form-input" type="text" name="name" placeholder="Your name" />
+								</div>
+								<div class="form-group">
+									<label class="form-label" for="username">Username</label>
+									<input class="form-input" type="text" name="username" placeholder="Username" />
+								</div>
+								<div class="form-group">
+									<label class="form-label" for="password">Password</label>
+									<input class="form-input" type="password" name="password" placeholder="Strong key" />
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="btn-group btn-group-block">
+							<button class="btn" id="close_login">Close</button>
+							<button class="btn btn-primary" id="submit_signup">Sign Up</button>
+							<button class="btn btn-primary" id="submit_login">Log In</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div>
+		<div><%- include(page) %></div>
+		<br />
+		<div class="footer">
+			<p class="text-center">developed by <a href="https://codepen.io/mirabalj" target="_blank" class="credits">@mirabalj</a></p>
+		</div>
+	</body>
+</html>

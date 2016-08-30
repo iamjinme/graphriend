@@ -1,0 +1,114 @@
+.navbar {
+  background: #34495e;
+}
+
+.navbar span {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.main {
+  background: #2B9684;
+  text-align: center;
+  padding: 10px 0 10px 0;
+}
+
+.title {
+  color: #fff;
+}
+
+.navbar .btn-link:hover, .navbar-brand:hover {
+  color: #fff;
+}
+
+.btn-link:hover {
+  color: #fff;
+}
+
+.columns.multiline {
+  flex-wrap: wrap;
+}
+
+.modal-header {
+  background: #2B9684;
+  color: #fff;
+}
+
+.modal-header .btn {
+  color: #fff;
+}
+
+.toast-message {
+  background: #E85600;
+  padding: 10px 15px 10px 15px;
+  color: #fff;
+}
+
+.toast-message .btn {
+  color: #fff;
+}
+
+.btn-delete {
+  background: transparent;
+  border: 0;
+  color: #666;
+  height: 2rem;
+  margin-left: .3rem;
+  opacity: .45;
+  padding: 0;
+}
+
+.btn-delete:hover {
+  background: transparent;
+  color: #666;
+  opacity: .85;
+}
+
+.btn-delete:before {
+  font-size: 2rem;
+}
+
+.btn-add {
+  background: transparent;
+  border: 0;
+  color: #007D71;
+  height: 2rem;
+  margin-left: .3rem;
+  opacity: .45;
+  padding: 0;
+}
+
+.btn-add:hover {
+  background: transparent;
+  color: #007D71;
+  opacity: .85;
+}
+
+.btn-add:before {
+  font-size: 2rem;
+}
+
+.footer a {
+  text-decoration: none;
+  background: #34495E;
+  color: #fff;
+  padding: 5px 10px 5px 10px;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.container a:hover {
+  color: #fff;
+}
+
+.big .fa-users {
+  color: #FBC02D;
+}
+
+.big .fa-ticket {
+  color: #795548;
+}
+
+.big .fa-heart {
+  color: #F44336;
+}
