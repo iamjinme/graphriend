@@ -24,7 +24,7 @@ module.exports = function (app) {
 
 	app.post('/api/signup', graPhriend.signUp);
 	app.post('/api/login', graPhriend.logIn);
-	app.get(isLoggedIn, '/api/logout', graPhriend.logOut);
+	app.get('/api/logout', graPhriend.logOut);
 
 /* Example Authenticated verify
 	app.route('/profile')
