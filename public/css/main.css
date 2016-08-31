@@ -17,8 +17,12 @@
   margin: 0 5px 0 0;
 }
 
+.table-container {
+  padding: 10px 10px 10px 10px;
+}
+
 .title {
-  color: #fff;
+  color: #34495E;
 }
 
 .navbar .btn-link:hover, .navbar-brand:hover {
