@@ -8,7 +8,7 @@ module.exports = function (app) {
 
 	function isLoggedIn (req, res, next) {
 		sess = req.session;
-		if (sess.user) {
+		if (sess.user || req.url === '/') {
 			return next();
 		} else {
 			res.redirect('/');
@@ -24,8 +24,8 @@ module.exports = function (app) {
 	}
 
 	app.route('/')
-		.get(function (req, res) {
-			res.render('main', { user: user, page: 'index' });
+		.get(isLoggedIn, function (req, res) {
+			res.render('main', { user: sess.user, page: 'index' });
 		});
 
 	app.post('/api/signup', graPhriend.signUp);
