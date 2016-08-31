@@ -1,10 +1,16 @@
 'use strict';
 
 var path = process.cwd();
+var moment = require('moment');
 var Graphriend = require(path + '/app/controllers/Graphriend.server.js');
+var Users = require('../models/users.js');
 var sess;
 
 module.exports = function (app) {
+
+	function fromNow(date){
+	  return moment(date).fromNow()
+	}
 
 	function isLoggedIn (req, res, next) {
 		sess = req.session;
@@ -22,6 +28,18 @@ module.exports = function (app) {
 			res.render('main', { user: sess.user, page: 'index' });
 		});
 
+	app.route('/all')
+		.get(isLoggedIn, function (req, res) {
+			Users
+	  	.find({}, { __v: false })
+	    .sort({'date': -1})
+			.limit(60)
+			.exec(function(err, users) {
+				res.render('main', { user: sess.user, users: users, page: 'all', fromNow: fromNow });
+	   	});
+		});
+
+	// Access controllers
 	app.post('/api/signup', graPhriend.signUp);
 	app.post('/api/login', graPhriend.logIn);
 	app.get('/api/logout', graPhriend.logOut);
