@@ -29,6 +29,7 @@ module.exports = function (app) {
 		});
 
 	app.post('/api/signup', graPhriend.signUp);
+	app.post('/api/login', graPhriend.logIn);
 
 /* Example Authenticated verify
 	app.route('/profile')
