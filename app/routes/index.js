@@ -23,11 +23,13 @@ module.exports = function (app) {
 
 	var graPhriend = new Graphriend();
 
+	// Index view
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
 			res.render('main', { user: sess.user, page: 'index' });
 		});
 
+	// All users view
 	app.route('/all')
 		.get(isLoggedIn, function (req, res) {
 			Users
@@ -37,6 +39,21 @@ module.exports = function (app) {
 			.exec(function(err, users) {
 				res.render('main', { user: sess.user, users: users, page: 'all', fromNow: fromNow });
 	   	});
+		});
+
+	// My friends view
+	app.route('/my')
+		.get(isLoggedIn, function (req, res) {
+			Users.findOne({ _id: sess.user._id }, { __v: false }, function(err, user) {
+				if (err) throw err;
+				Users
+	  		.find({ username: { $in: user.friends } }, { __v: false })
+	    	.sort({'date': -1})
+				.limit(60)
+				.exec(function(err, friends) {
+					res.render('main', { user: sess.user, friends: friends, page: 'my', fromNow: fromNow });
+	   		});
+			});
 		});
 
 	// Access API REST
