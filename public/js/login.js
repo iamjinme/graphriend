@@ -20,6 +20,12 @@ $(document).ready(function() {
     $('#name_input').addClass('hide');
     $('#login_message_container').addClass('hide');
   });
+  $('#btn_logout').click(function() {
+    // Log Out
+    $.getJSON('/api/logout', function(data) {
+      window.location.href = "/";
+    });
+  })
   $('#clear_login, #close_login').click(function() {
     // Clear modal
     $('#login_modal').removeClass('active');

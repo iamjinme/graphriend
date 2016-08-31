@@ -21,16 +21,16 @@
 					<a href="/profile" class="navbar-brand hide-sm">Graphriend</a>
 				</section>
 				<section class="navbar-section">
-					<% if (!user.isLogged) { %>
+					<% if (!user) { %>
 						<span class="hide-sm">Welcome, Do I know you?</span>
 						<a id="btn_signup" class="btn btn-primary"></i>Sign Up</a>
 						<a id="btn_login" class="btn btn-link"><i class="fa fa-user"></i> Login</a>
 					<% } else { %>
-						<a href="#/all" class="btn btn-link">All users</a>
-						<a href="#/my" class="btn btn-link">My friends</a>
-						<a href="#/config" class="btn btn-link"><i class="fa fa-cog"></i></a>
+						<a href="/all" class="btn btn-link">All users</a>
+						<a href="/my" class="btn btn-link">My friends</a>
+						<a href="/config" class="btn btn-link"><i class="fa fa-cog"></i></a>
 						<span class="hide-sm">Welcome, <%= user.name %>!</span>
-						<a href="/logout" class="btn btn-primary"></i>Logout</a>
+						<a id="btn_logout" class="btn btn-primary"></i>Logout</a>
 					<% } %>
 				</section>
 			</header>

@@ -59,6 +59,13 @@ function Graphriend () {
 		};
 	};
 
+  // Logout
+  this.logOut = function(req, res) {
+		sess = req.session;
+		req.session.destroy();
+		res.json({logout: true});
+	};
+
 }
 
 module.exports = Graphriend;
