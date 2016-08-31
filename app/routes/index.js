@@ -28,6 +28,8 @@ module.exports = function (app) {
 			res.render('main', { user: user, page: 'index' });
 		});
 
+	app.post('/api/signup', graPhriend.signUp);
+
 /* Example Authenticated verify
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {
