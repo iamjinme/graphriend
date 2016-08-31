@@ -31,6 +31,17 @@ $(document).ready(function() {
   $('#submit_signup').click(function() {
     // POST Sign Up
     $.post('/api/signup', $('#login_form').serialize(), function(data) {
+      if (data.error) {
+        $('#login_message').html(data.message);
+        $('#login_message_container').removeClass('hide');
+      } else {
+        window.location.href = "/";
+      }
+    })
+  });
+  $('#submit_login').click(function() {
+    // POST Log In
+    $.post('/api/login', $('#login_form').serialize(), function(data) {
       console.log(data);
       if (data.error) {
         $('#login_message').html(data.message);

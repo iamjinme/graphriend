@@ -31,6 +31,7 @@ function Graphriend () {
 					});
 					user.save(function(err, doc) {
         		if(err) throw err;
+            sess.user = doc;
         		res.json(doc);
       		});
 				};
@@ -38,6 +39,25 @@ function Graphriend () {
 		};
   };
 
+  // Log In
+  this.logIn = function(req, res) {
+		sess = req.session;
+		if (!req.body.username) {
+			res.json({error: true, message: 'What is your username?'});
+		} else if (!req.body.password) {
+			res.json({error: true, message: 'Password its empty, fill this'});
+		} else {
+			Users.findOne({ 'username': req.body.username, 'password': req.body.password }, function(err, doc) {
+				if (err) throw err;
+				if (doc) {
+					sess.user = doc;
+					res.json(doc);
+				} else {
+					res.json({error: true, message: 'Email/Password incorrect, try again!'});
+				}
+			});
+		};
+	};
 
 }
 
