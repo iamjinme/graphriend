@@ -1,24 +1,28 @@
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Member since</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.forEach(function(friend) { %>
-    <tr>
-      <td>
-        <figure class="avatar">
-          <img src="<%= '//api.adorable.io/avatar/100/' + friend.username %>" />
-        </figure>
-      </td>
-      <td><%= friend.name %></td>
-      <td><%= fromNow(friend.date) %></td>
-      <td><a href="/config" class="btn btn-link"><i class="fa fa-plus"></i></a></td>
-    </tr>
-    <% }); %>
+<div class="table-container">
+  <table class="table table-striped table-hover">
+    <h3 class="title text-right">All users</h3>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Member since</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(function(friend) { %>
+      <tr>
+        <td>
+          <figure class="avatar">
+            <img src="<%= '//api.adorable.io/avatar/100/' + friend.username %>" />
+          </figure>
+        </td>
+        <td><%= friend.name %></td>
+        <td><%= fromNow(friend.date) %></td>
+        <td><a id="<%= friend.username %>" class="btn btn-link btn-add tooltip" data-tooltip="Add friend"><i class="fa fa-plus"></i></a></td>
+      </tr>
+      <% }); %>
     </tbody>
-</table>
+  </table>
+</div>
+<script src="/public/js/all.js"></script>
