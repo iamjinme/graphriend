@@ -29,7 +29,10 @@
 						<a href="/all" class="btn btn-link">All users</a>
 						<a href="/my" class="btn btn-link">My friends</a>
 						<a href="/config" class="btn btn-link"><i class="fa fa-cog"></i></a>
-						<span class="hide-sm">Welcome, <%= user.name %>!</span>
+						<figure class="avatar">
+    					<img src="<%= '//api.adorable.io/avatar/200/' + user.username %>" />
+						</figure>
+						<span class="hide-sm"><%= user.name %></span>
 						<a id="btn_logout" class="btn btn-primary"></i>Logout</a>
 					<% } %>
 				</section>
