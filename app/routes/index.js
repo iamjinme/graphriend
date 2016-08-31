@@ -17,12 +17,6 @@ module.exports = function (app) {
 
 	var graPhriend = new Graphriend();
 
-	var user = {
-		isLogged: false,
-		name: 'Jinme',
-		username: 'mirabalj'
-	}
-
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
 			res.render('main', { user: sess.user, page: 'index' });
@@ -30,6 +24,7 @@ module.exports = function (app) {
 
 	app.post('/api/signup', graPhriend.signUp);
 	app.post('/api/login', graPhriend.logIn);
+	app.get(isLoggedIn, '/api/logout', graPhriend.logOut);
 
 /* Example Authenticated verify
 	app.route('/profile')
