@@ -66,6 +66,37 @@ function Graphriend () {
 		res.json({logout: true});
 	};
 
+  // Get friends
+  this.getFriend = function(req, res) {
+    sess = req.session;
+    console.log(sess.user._id)
+    var friend = req.params.username;
+    Users.findOne({ '_id': sess.user._id  }, function(err, user) {
+      if (err) throw err;
+      var pos = user.friends.indexOf(friend);
+      if (pos < 0) {
+        user.friends.push(friend);
+      }
+      user.save();
+      res.json({ id: user._id, friend: friend, friends: user.friends.length });
+    });
+  };
+
+  // Add friend
+  this.addFriend = function(req, res) {
+    sess = req.session;
+    var friend = req.params.username;
+    Users.findOne({ '_id': sess.user._id  }, function(err, user) {
+      if (err) throw err;
+      var pos = user.friends.indexOf(friend);
+      if (pos < 0) {
+        user.friends.push(friend);
+      }
+      user.save();
+      res.json({ id: user._id, friend: friend, friends: user.friends.length });
+    });
+  };
+
 }
 
 module.exports = Graphriend;

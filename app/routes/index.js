@@ -39,7 +39,7 @@ module.exports = function (app) {
 	   	});
 		});
 
-	// Access controllers
+	// Access API REST
 	app.post('/api/signup', graPhriend.signUp);
 	app.post('/api/login', graPhriend.logIn);
 	app.get('/api/logout', graPhriend.logOut);
@@ -51,11 +51,10 @@ module.exports = function (app) {
 		});
 */
 
-/* Example REST api
-	app.route('/friends')
-		.get(isLoggedIn, graPhriend.getFriend)
+	// Friends API REST
+	app.route('/api/users/:username/friends')
+		//.get(isLoggedIn, graPhriend.getFriend)
 		.post(isLoggedIn, graPhriend.addFriend)
-		.delete(isLoggedIn, graPhriend.delFriend);
-*/
+		//.delete(isLoggedIn, graPhriend.delFriend);
 
 };
