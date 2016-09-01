@@ -70,7 +70,7 @@ module.exports = function (app) {
 
 	// Friends API REST
 	app.route('/api/users/:username/friends')
-		//.get(isLoggedIn, graPhriend.getFriend)
+		.get(isLoggedIn, graPhriend.getFriend)
 		.post(isLoggedIn, graPhriend.addFriend)
 		//.delete(isLoggedIn, graPhriend.delFriend);
 
