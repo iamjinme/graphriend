@@ -75,7 +75,6 @@ function Graphriend () {
       Users
       .find({ username: { $in: user.friends } }, { __v: false })
       .sort({'date': -1})
-      .limit(60)
       .exec(function(err, friends) {
         if (err) throw err;
         res.json(getNodes(user, friends));

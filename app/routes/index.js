@@ -35,7 +35,6 @@ module.exports = function (app) {
 			Users
 	  	.find({}, { __v: false })
 	    .sort({'date': -1})
-			.limit(60)
 			.exec(function(err, users) {
 				res.render('main', { user: sess.user, users: users, page: 'all', fromNow: fromNow });
 	   	});
@@ -49,7 +48,6 @@ module.exports = function (app) {
 				Users
 	  		.find({ username: { $in: user.friends } }, { __v: false })
 	    	.sort({'date': -1})
-				.limit(60)
 				.exec(function(err, friends) {
 					res.render('main', { user: sess.user, friends: friends, page: 'my', fromNow: fromNow });
 	   		});
@@ -60,13 +58,6 @@ module.exports = function (app) {
 	app.post('/api/signup', graPhriend.signUp);
 	app.post('/api/login', graPhriend.logIn);
 	app.get('/api/logout', graPhriend.logOut);
-
-/* Example Authenticated verify
-	app.route('/profile')
-		.get(isLoggedIn, function (req, res) {
-			res.render('main', { user: sess.user, page: 'profile' });
-		});
-*/
 
 	// Friends API REST
 	app.route('/api/users/:username/friends')
