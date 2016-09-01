@@ -6,10 +6,6 @@ var sess;
 
 module.exports = function (app) {
 
-	function fromNow(date){
-	  return moment(date).fromNow()
-	}
-
 	function isLoggedIn (req, res, next) {
 		sess = req.session;
 		if (sess.user || req.url === '/') {
