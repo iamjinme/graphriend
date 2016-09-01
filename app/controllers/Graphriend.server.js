@@ -92,11 +92,26 @@ function Graphriend () {
       var pos = user.friends.indexOf(friend);
       if (pos < 0) {
         user.friends.push(friend);
+        user.save();
       }
-      user.save();
       res.json({ id: user._id, friend: friend, friends: user.friends.length });
     });
   };
+
+  // Delete friend
+  this.delFriend = function(req, res) {
+		sess = req.session;
+    var friend = req.params.username;
+		Users.findOne({ '_id': sess.user._id }, function(err, user) {
+    	if (err) throw err;
+      var pos = user.friends.indexOf(friend);
+			if (pos >= 0) {
+        user.friends.splice(pos, 1);
+        user.save();
+			}
+      res.json({ id: user._id, username: friend, friends: user.friends.length });
+    });
+	}
 
   // Get nodes
   var getNodes = function(user, friends) {
@@ -104,7 +119,7 @@ function Graphriend () {
       id: user.username,
       label: user.name,
       shape: 'circularImage',
-      image: '//api.adorable.io/avatar/100/' + user.username      
+      image: '//api.adorable.io/avatar/100/' + user.username
     }];
     var edges = [];
     friends.forEach(function(friend) {
