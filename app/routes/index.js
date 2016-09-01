@@ -72,6 +72,6 @@ module.exports = function (app) {
 	app.route('/api/users/:username/friends')
 		.get(isLoggedIn, graPhriend.getFriend)
 		.post(isLoggedIn, graPhriend.addFriend)
-		//.delete(isLoggedIn, graPhriend.delFriend);
+		.delete(isLoggedIn, graPhriend.delFriend);
 
 };
