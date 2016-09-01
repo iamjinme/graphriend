@@ -69,16 +69,17 @@ function Graphriend () {
   // Get friends
   this.getFriend = function(req, res) {
     sess = req.session;
-    console.log(sess.user._id)
     var friend = req.params.username;
-    Users.findOne({ '_id': sess.user._id  }, function(err, user) {
+    Users.findOne({ 'username': friend  }, function(err, user) {
       if (err) throw err;
-      var pos = user.friends.indexOf(friend);
-      if (pos < 0) {
-        user.friends.push(friend);
-      }
-      user.save();
-      res.json({ id: user._id, friend: friend, friends: user.friends.length });
+      Users
+      .find({ username: { $in: user.friends } }, { __v: false })
+      .sort({'date': -1})
+      .limit(60)
+      .exec(function(err, friends) {
+        if (err) throw err;
+        res.json(getNodes(user, friends));
+      });
     });
   };
 
@@ -95,6 +96,27 @@ function Graphriend () {
       user.save();
       res.json({ id: user._id, friend: friend, friends: user.friends.length });
     });
+  };
+
+  // Get nodes
+  var getNodes = function(user, friends) {
+    var nodes = [{
+      id: user.username,
+      label: user.name,
+      shape: 'circularImage',
+      image: '//api.adorable.io/avatar/100/' + user.username      
+    }];
+    var edges = [];
+    friends.forEach(function(friend) {
+      nodes.push({
+        id: friend.username,
+        label: friend.name,
+        shape: 'circularImage',
+        image: '//api.adorable.io/avatar/100/' + friend.username
+      });
+      edges.push({from: user.username, to: friend.username});
+    });
+    return {nodes: nodes, edges: edges};
   };
 
 }
