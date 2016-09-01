@@ -69,7 +69,7 @@ This is an open-source project, and contributions are always welcome!
 
 ## Credits
 
-* **Jinme Mirabal** - *All the work, except Clementine.js* - [Jinme Mirabal](http://codepen.io/mirabalj/)
+* **Jinme Mirabal** - *All the work, except Clementine.js* - [Portfolio in Codepen.io](http://codepen.io/mirabalj/)
 
 ## License
 
