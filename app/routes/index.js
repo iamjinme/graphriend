@@ -1,9 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var moment = require('moment');
 var Graphriend = require(path + '/app/controllers/Graphriend.server.js');
-var Users = require('../models/users.js');
 var sess;
 
 module.exports = function (app) {
@@ -35,17 +33,7 @@ module.exports = function (app) {
 
 	// My friends view
 	app.route('/my')
-		.get(isLoggedIn, function (req, res) {
-			Users.findOne({ _id: sess.user._id }, { __v: false }, function(err, user) {
-				if (err) throw err;
-				Users
-	  		.find({ username: { $in: user.friends } }, { __v: false })
-	    	.sort({'date': -1})
-				.exec(function(err, friends) {
-					res.render('main', { user: sess.user, friends: friends, page: 'my', fromNow: fromNow });
-	   		});
-			});
-		});
+		.get(isLoggedIn, graPhriend.showMy);
 
 	// Access API REST
 	app.post('/api/signup', graPhriend.signUp);

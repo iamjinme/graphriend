@@ -78,6 +78,20 @@ function Graphriend () {
      });
   };
 
+  // Show My friends
+  this.showMy = function(req, res) {
+    sess = req.session;
+    Users.findOne({ _id: sess.user._id }, { __v: false }, function(err, user) {
+      if (err) throw err;
+      Users
+      .find({ username: { $in: user.friends } }, { __v: false })
+      .sort({'date': -1})
+      .exec(function(err, friends) {
+        res.render('main', { user: sess.user, friends: friends, page: 'my', fromNow: fromNow });
+       });
+    });
+  };
+
   // Get friends
   this.getFriend = function(req, res) {
     sess = req.session;
