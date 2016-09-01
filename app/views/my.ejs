@@ -1,11 +1,15 @@
+<link href="/public/css/vis.min.css" rel="stylesheet" type="text/css">
 <div class="table-container">
-  <table class="table table-striped table-hover">
-    <h3 class="title text-right">
-      <a id="btn-graph" class="btn btn-link btn-view tooltip" data-tooltip="Graph nodes">
-        <i class="fa fa-2x fa-code-fork"></i>
-      </a>
-      My friends
-    </h3>
+  <h3 class="title text-right">
+    <a id="btn-graph" data-user="<%= user.username %>" class="btn btn-link tooltip" data-tooltip="Graph friends">
+      <i class="fa fa-2x fa-code-fork"></i>
+    </a>
+    <a id="btn-list" class="btn btn-link hide tooltip" data-tooltip="List friends">
+      <i class="fa fa-2x fa-list"></i>
+    </a>
+    My friends
+  </h3>
+  <table id="table" class="table table-striped table-hover">
     <thead>
       <tr>
         <th></th>
@@ -30,3 +34,6 @@
     </tbody>
   </table>
 </div>
+<div id="nodes" class="hide"></div>
+<script src="/public/js/vis.min.js"></script>
+<script src="/public/js/my.js"></script>
