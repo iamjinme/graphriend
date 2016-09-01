@@ -11,17 +11,19 @@
     </thead>
     <tbody>
       <% users.forEach(function(friend) { %>
-      <tr>
-        <td>
-          <figure class="avatar">
-            <img src="<%= '//api.adorable.io/avatar/100/' + friend.username %>" />
-          </figure>
-        </td>
-        <td><%= friend.name %></td>
-        <td><%= fromNow(friend.date) %></td>
-        <td><a id="<%= friend.username %>" class="btn btn-link btn-add tooltip" data-tooltip="Add friend"><i class="fa fa-plus"></i></a></td>
-      </tr>
-      <% }); %>
+        <% if(friend.username !== user.username) { %>
+          <tr>
+            <td>
+              <figure class="avatar">
+                <img src="<%= '//api.adorable.io/avatar/100/' + friend.username %>" />
+              </figure>
+            </td>
+            <td><%= friend.name %></td>
+            <td><%= fromNow(friend.date) %></td>
+            <td><a id="<%= friend.username %>" class="btn btn-link btn-add tooltip" data-tooltip="Add friend"><i class="fa fa-plus"></i></a></td>
+          </tr>
+        <% } %>
+      <% }) %>
     </tbody>
   </table>
 </div>
