@@ -164,9 +164,9 @@ function Graphriend () {
     friends.forEach(function(friend) {
       var pos = user.friends.indexOf(friend.username);
       if (pos < 0) {
-        friend.isFriend = true;
-      } else {
         friend.isFriend = false;
+      } else {
+        friend.isFriend = true;
       }
     });
     return friends;
