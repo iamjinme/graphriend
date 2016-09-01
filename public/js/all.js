@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('.btn-add').click(function() {
     // POST Add friend
     $.post('/api/users/' + this.id + '/friends', function(data) {
-      console.log(data);
+      $('#' + data.friend).html('<i class="fa fa-heart"></i>').removeClass('btn-add').unbind("click");
     })
   });
 });
