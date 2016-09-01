@@ -14,9 +14,18 @@ $(document).ready(function() {
     $('#table').removeClass('hide');
     $('#nodes').addClass('hide');
   });
-  $('.btn-view').click(function() {
-    // Show friends
-    console.log('Show friends');
+  $('.btn-del').click(function() {
+    // Delete friend
+    var user = this.id;
+    $.ajax({
+        url: '/api/users/' + user + '/friends',
+        type: 'DELETE',
+        success: function(data) {
+          if(!data.error) {
+            $('#tr_' + data.username).addClass('hide');
+          }
+        }
+    });
   });
   // Call AJAX
   function getPhriend(user) {
