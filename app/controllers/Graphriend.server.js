@@ -74,7 +74,7 @@ function Graphriend () {
     .find({}, { __v: false })
     .sort({'date': -1})
     .exec(function(err, users) {
-      res.render('main', { user: sess.user, users: users, page: 'all', fromNow: fromNow });
+      res.render('main', { user: sess.user, users: filterFriends(sess.user, users), page: 'all', fromNow: fromNow });
      });
   };
 
@@ -158,6 +158,19 @@ function Graphriend () {
     });
     return {nodes: nodes, edges: edges};
   };
+
+  // Filter Helper
+  function filterFriends(user, friends) {
+    friends.forEach(function(friend) {
+      var pos = user.friends.indexOf(friend.username);
+      if (pos < 0) {
+        friend.isFriend = true;
+      } else {
+        friend.isFriend = false;
+      }
+    });
+    return friends;
+  }
 
   // Moment Helper
   function fromNow(date){

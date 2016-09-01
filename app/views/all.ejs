@@ -20,7 +20,11 @@
             </td>
             <td><%= friend.name %></td>
             <td><%= fromNow(friend.date) %></td>
-            <td><a id="<%= friend.username %>" class="btn btn-link btn-add tooltip" data-tooltip="Add friend"><i class="fa fa-plus"></i></a></td>
+            <% if(friend.isFriend) { %>
+              <td><a class="btn btn-link"><i class="fa fa-heart"></i><a></td>
+            <% } else { %>
+              <td><a id="<%= friend.username %>" class="btn btn-link btn-add tooltip" data-tooltip="Add friend"><i class="fa fa-plus"></i></a></td>
+            <% } %>
           </tr>
         <% } %>
       <% }) %>
