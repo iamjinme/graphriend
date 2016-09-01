@@ -17,8 +17,8 @@
 			<!-- Menu -->
 			<header class="navbar">
 				<section class="navbar-section">
-					<a href="/" class="btn btn-link btn-lg"><i class="fa fa-glide"></i></a>
-					<a href="/profile" class="navbar-brand hide-sm">Graphriend</a>
+					<a href="/" class="btn btn-link btn-lg"><i class="fa fa-home"></i></a>
+					<a href="/" class="navbar-brand hide-sm">Graphriend</a>
 				</section>
 				<section class="navbar-section">
 					<% if (!user) { %>
@@ -28,7 +28,6 @@
 					<% } else { %>
 						<a href="/all" class="btn btn-link">All users</a>
 						<a href="/my" class="btn btn-link">My friends</a>
-						<a href="/config" class="btn btn-link"><i class="fa fa-cog"></i></a>
 						<figure class="avatar">
     					<img src="<%= '//api.adorable.io/avatar/100/' + user.username %>" />
 						</figure>
