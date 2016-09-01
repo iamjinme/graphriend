@@ -1,5 +1,6 @@
 'use strict';
 
+var moment = require('moment');
 var Users = require('../models/users.js');
 var sess;
 
@@ -65,6 +66,17 @@ function Graphriend () {
 		req.session.destroy();
 		res.json({logout: true});
 	};
+
+  // Show All friends
+  this.showAll = function(req, res) {
+    sess = req.session;
+    Users
+    .find({}, { __v: false })
+    .sort({'date': -1})
+    .exec(function(err, users) {
+      res.render('main', { user: sess.user, users: users, page: 'all', fromNow: fromNow });
+     });
+  };
 
   // Get friends
   this.getFriend = function(req, res) {
@@ -132,6 +144,11 @@ function Graphriend () {
     });
     return {nodes: nodes, edges: edges};
   };
+
+  // Moment Helper
+  function fromNow(date){
+	  return moment(date).fromNow()
+	}
 
 }
 

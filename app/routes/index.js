@@ -31,14 +31,7 @@ module.exports = function (app) {
 
 	// All users view
 	app.route('/all')
-		.get(isLoggedIn, function (req, res) {
-			Users
-	  	.find({}, { __v: false })
-	    .sort({'date': -1})
-			.exec(function(err, users) {
-				res.render('main', { user: sess.user, users: users, page: 'all', fromNow: fromNow });
-	   	});
-		});
+		.get(isLoggedIn, graPhriend.showAll);
 
 	// My friends view
 	app.route('/my')
